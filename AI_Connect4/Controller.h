@@ -9,7 +9,7 @@ public:
 	enum class Type { KEYBOARD, COMPUTER };
 
 
-	virtual Coord GetPlayerInput() = 0;
+	virtual Column GetPlayerInput() = 0;
 
 
 };

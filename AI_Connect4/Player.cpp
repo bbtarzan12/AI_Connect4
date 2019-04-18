@@ -21,7 +21,12 @@ Player::Player(ID id, std::string name, const Controller::Type type)
 	}
 }
 
-Coord Player::GetPlayerInput()
+Column Player::GetPlayerInput()
 {
 	return controller->GetPlayerInput();
+}
+
+const ID& Player::GetPlayerID() const
+{
+	return id;
 }

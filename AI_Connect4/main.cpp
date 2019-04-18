@@ -1,9 +1,11 @@
 #include "Game.h"
+#include "CommandLineRenderer.h"
 
 
 int main()
 {
 	Game game;
+	CommandlineRenderer renderer;
 
 	game.Initialize();
 
@@ -13,6 +15,7 @@ int main()
 	while (!game.isGameFinished())
 	{
 		game.Update();
+		renderer.Render(game);
 	}
 
 	game.Release();

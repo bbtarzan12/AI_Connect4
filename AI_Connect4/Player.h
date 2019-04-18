@@ -19,7 +19,8 @@ class Player
 
 public:
 	Player(ID id, std::string name, const Controller::Type type);
-	Coord GetPlayerInput();
+	Column GetPlayerInput();
+	const ID& GetPlayerID() const;
 
 private:
 	ID id;

@@ -17,15 +17,25 @@ public:
 	void Update();
 	void Release();
 
-	Map* GetGameMap();
+	const Map& GetGameMap() const;
 
 	bool isGameFinished();
 
 private:
-	Map* map;
+	Coord GetCoordFromMap(const Column& column, bool& isValid);
+	void SetCoordToMap(const std::shared_ptr<Player>& player, const Coord& coord);
+	bool CheckGameEndBy4Connected(const Coord& coord, const ID& id);
+	int GetNumOfNeighbor(const Coord& originCoord, const int& deltaColumn, const int& deltaRow, const ID& id);
+	bool CheckCoordIsInBound(const Column& column, const Row& row);
+	bool CheckMapIsFull();
+
+private:
+	Map map;
 
 	std::vector<std::shared_ptr<Player>> players;
-	ID numPlayer;
+	ID currentTurnPlayerID;
+	int numPlayer;
+	bool isGameEnd;
 
 };
 

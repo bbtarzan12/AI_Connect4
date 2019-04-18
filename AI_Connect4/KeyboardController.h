@@ -8,7 +8,7 @@ class KeyboardController : public Controller
 {
 
 public:
-	virtual Coord GetPlayerInput() override;
+	virtual Column GetPlayerInput() override;
 
 };
 

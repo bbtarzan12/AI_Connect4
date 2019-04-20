@@ -5,7 +5,7 @@
 int main()
 {
 	Game game;
-	CommandlineRenderer renderer;
+	std::unique_ptr<Renderer> renderer = Renderer::MakeRenderer(Renderer::Type::COMMAND);
 
 	game.Initialize();
 
@@ -15,7 +15,7 @@ int main()
 	while (!game.isGameFinished())
 	{
 		game.Update();
-		renderer.Render(game);
+		renderer->Render(game);
 	}
 
 	game.Release();

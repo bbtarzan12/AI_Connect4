@@ -1,7 +1,6 @@
 #include "Game.h"
 #include "CommandLineRenderer.h"
 
-
 int main()
 {
 	Game game;
@@ -9,8 +8,8 @@ int main()
 
 	game.Initialize();
 
-	game.AddPlayer("First", Controller::Type::KEYBOARD);
-	game.AddPlayer("Second", Controller::Type::KEYBOARD);
+	game.AddPlayer("First", Controller::Type::RANDOM);
+	game.AddPlayer("Second", Controller::Type::RANDOM);
 
 	while (!game.isGameFinished())
 	{

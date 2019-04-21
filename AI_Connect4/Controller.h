@@ -6,7 +6,7 @@ class Controller
 {
 
 public:
-	enum class Type { KEYBOARD, COMPUTER };
+	enum class Type { KEYBOARD, RANDOM };
 
 
 	virtual Column GetPlayerInput() = 0;

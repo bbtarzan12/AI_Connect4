@@ -2,6 +2,7 @@
 #include "Controller.h"
 
 #include "KeyboardController.h"
+#include "RandomAIController.h"
 
 using namespace std;
 
@@ -12,9 +13,10 @@ Player::Player(ID id, std::string name, const Controller::Type type)
 	switch (type)
 	{
 		case Controller::Type::KEYBOARD:
-			controller = std::make_shared<KeyboardController>();
+			controller = make_shared<KeyboardController>();
 			break;
-		case Controller::Type::COMPUTER:
+		case Controller::Type::RANDOM:
+			controller = make_shared<RandomAIController>();
 			break;
 		default:
 			break;

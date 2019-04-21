@@ -13,48 +13,84 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="소스 파일\Renderer">
+      <UniqueIdentifier>{e0057105-1dce-4218-b44e-a6d7f4ebb701}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\Controller">
+      <UniqueIdentifier>{b50036f7-da2d-4a06-9d9e-ced6e7bd6aa9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\Util">
+      <UniqueIdentifier>{cc910306-0b97-4885-9c1c-81d8698ba474}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\Base">
+      <UniqueIdentifier>{63c0ec06-7458-461b-9099-351496dd6a50}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="헤더 파일\Controller">
+      <UniqueIdentifier>{bf8a0e6d-dd22-447a-a1bf-80c8cf06440e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="헤더 파일\Base">
+      <UniqueIdentifier>{15390cda-169a-45ed-8159-45b75437f449}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="헤더 파일\Util">
+      <UniqueIdentifier>{c0d5b9a7-2cf4-40d9-85b9-37efe4fcae53}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="헤더 파일\Renderer">
+      <UniqueIdentifier>{1da14db5-fd37-4c3a-89ba-fb5c3cf02bac}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="Game.cpp">
-      <Filter>소스 파일</Filter>
-    </ClCompile>
-    <ClCompile Include="Player.cpp">
-      <Filter>소스 파일</Filter>
+    <ClCompile Include="CommandLineRenderer.cpp">
+      <Filter>소스 파일\Renderer</Filter>
     </ClCompile>
     <ClCompile Include="KeyboardController.cpp">
-      <Filter>소스 파일</Filter>
+      <Filter>소스 파일\Controller</Filter>
     </ClCompile>
-    <ClCompile Include="CommandLineRenderer.cpp">
-      <Filter>소스 파일</Filter>
+    <ClCompile Include="RandomAIController.cpp">
+      <Filter>소스 파일\Controller</Filter>
+    </ClCompile>
+    <ClCompile Include="Random.cpp">
+      <Filter>소스 파일\Util</Filter>
+    </ClCompile>
+    <ClCompile Include="Player.cpp">
+      <Filter>소스 파일\Base</Filter>
     </ClCompile>
     <ClCompile Include="Renderer.cpp">
-      <Filter>소스 파일</Filter>
+      <Filter>소스 파일\Base</Filter>
+    </ClCompile>
+    <ClCompile Include="Game.cpp">
+      <Filter>소스 파일\Base</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Game.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
-    <ClInclude Include="Player.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
-    <ClInclude Include="Controller.h">
-      <Filter>헤더 파일</Filter>
-    </ClInclude>
-    <ClInclude Include="Type.h">
-      <Filter>헤더 파일</Filter>
+    <ClInclude Include="CommandLineRenderer.h">
+      <Filter>헤더 파일\Renderer</Filter>
     </ClInclude>
     <ClInclude Include="KeyboardController.h">
-      <Filter>헤더 파일</Filter>
+      <Filter>헤더 파일\Controller</Filter>
+    </ClInclude>
+    <ClInclude Include="RandomAIController.h">
+      <Filter>헤더 파일\Controller</Filter>
+    </ClInclude>
+    <ClInclude Include="Random.h">
+      <Filter>헤더 파일\Util</Filter>
+    </ClInclude>
+    <ClInclude Include="Game.h">
+      <Filter>헤더 파일\Base</Filter>
+    </ClInclude>
+    <ClInclude Include="Player.h">
+      <Filter>헤더 파일\Base</Filter>
     </ClInclude>
     <ClInclude Include="Renderer.h">
-      <Filter>헤더 파일</Filter>
+      <Filter>헤더 파일\Base</Filter>
     </ClInclude>
-    <ClInclude Include="CommandLineRenderer.h">
-      <Filter>헤더 파일</Filter>
+    <ClInclude Include="Type.h">
+      <Filter>헤더 파일\Base</Filter>
+    </ClInclude>
+    <ClInclude Include="Controller.h">
+      <Filter>헤더 파일\Base</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

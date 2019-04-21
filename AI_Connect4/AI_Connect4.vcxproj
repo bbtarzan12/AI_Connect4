@@ -123,11 +123,15 @@
     <ClCompile Include="KeyboardController.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Player.cpp" />
+    <ClCompile Include="Random.cpp" />
+    <ClCompile Include="RandomAIController.cpp" />
     <ClCompile Include="Renderer.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CommandLineRenderer.h" />
     <ClInclude Include="KeyboardController.h" />
+    <ClInclude Include="Random.h" />
+    <ClInclude Include="RandomAIController.h" />
     <ClInclude Include="Renderer.h" />
     <ClInclude Include="Type.h" />
     <ClInclude Include="Controller.h" />

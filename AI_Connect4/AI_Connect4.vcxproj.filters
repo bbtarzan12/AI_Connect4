@@ -48,9 +48,6 @@
     <ClCompile Include="KeyboardController.cpp">
       <Filter>소스 파일\Controller</Filter>
     </ClCompile>
-    <ClCompile Include="RandomAIController.cpp">
-      <Filter>소스 파일\Controller</Filter>
-    </ClCompile>
     <ClCompile Include="Random.cpp">
       <Filter>소스 파일\Util</Filter>
     </ClCompile>
@@ -63,15 +60,18 @@
     <ClCompile Include="Game.cpp">
       <Filter>소스 파일\Base</Filter>
     </ClCompile>
+    <ClCompile Include="AIRandomController.cpp">
+      <Filter>소스 파일\Controller</Filter>
+    </ClCompile>
+    <ClCompile Include="AIMostWinningLineController.cpp">
+      <Filter>소스 파일\Controller</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CommandLineRenderer.h">
       <Filter>헤더 파일\Renderer</Filter>
     </ClInclude>
     <ClInclude Include="KeyboardController.h">
-      <Filter>헤더 파일\Controller</Filter>
-    </ClInclude>
-    <ClInclude Include="RandomAIController.h">
       <Filter>헤더 파일\Controller</Filter>
     </ClInclude>
     <ClInclude Include="Random.h">
@@ -91,6 +91,12 @@
     </ClInclude>
     <ClInclude Include="Controller.h">
       <Filter>헤더 파일\Base</Filter>
+    </ClInclude>
+    <ClInclude Include="AIRandomController.h">
+      <Filter>헤더 파일\Controller</Filter>
+    </ClInclude>
+    <ClInclude Include="AIMostWinningLineController.h">
+      <Filter>헤더 파일\Controller</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

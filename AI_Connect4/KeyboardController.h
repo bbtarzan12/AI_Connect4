@@ -8,6 +8,7 @@ class KeyboardController : public Controller
 {
 
 public:
+	KeyboardController(const std::shared_ptr<Player>& player);
 	virtual Column GetPlayerInput() override;
 
 };

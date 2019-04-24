@@ -3,20 +3,20 @@
 
 int main()
 {
-	Game game;
+	std::shared_ptr<Game> game = Game::Create();
 	std::unique_ptr<Renderer> renderer = Renderer::MakeRenderer(Renderer::Type::COMMAND);
 
-	game.Initialize();
+	game->Initialize();
 
-	game.AddPlayer("First", Controller::Type::RANDOM);
-	game.AddPlayer("Second", Controller::Type::RANDOM);
+	game->AddPlayer("First", Controller::Type::RANDOM);
+	game->AddPlayer("Second", Controller::Type::RANDOM);
 
-	while (!game.isGameFinished())
+	while (!game->isGameFinished())
 	{
-		game.Update();
+		game->Update();
 		renderer->Render(game);
 	}
 
-	game.Release();
+	game->Release();
 	return 0;
 }

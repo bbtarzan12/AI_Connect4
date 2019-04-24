@@ -3,6 +3,11 @@
 
 using namespace std;
 
+KeyboardController::KeyboardController(const std::shared_ptr<Player>& player)
+{
+	this->player = player;
+}
+
 Column KeyboardController::GetPlayerInput()
 {
 	Column choice;

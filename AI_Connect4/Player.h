@@ -7,9 +7,11 @@
 #include "Type.h"
 #include "Controller.h"
 
+class Game;
+
 enum class Controller::Type;
 
-class Player
+class Player : public std::enable_shared_from_this<Player>
 {
 	friend std::ostream& operator <<(std::ostream& stream, const Player& player)
 	{
@@ -18,14 +20,21 @@ class Player
 	}
 
 public:
-	Player(ID id, std::string name, const Controller::Type type);
+	static std::shared_ptr<Player> Create(ID id, std::string name, const Controller::Type type, const std::shared_ptr<Game>& game);
+
 	Column GetPlayerInput();
+
+	const Map& GetGameMap() const;
 	const ID& GetPlayerID() const;
+
+private:
+	Player(ID id, std::string name, const Controller::Type type, const std::shared_ptr<Game>& game);
+	void AddController(const Controller::Type type);
 
 private:
 	ID id;
 	std::string name;
-
+	std::shared_ptr<Game> game;
 	std::shared_ptr<Controller> controller;
 };
 

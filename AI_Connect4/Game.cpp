@@ -4,6 +4,11 @@
 
 using namespace std;
 
+std::shared_ptr<Game> Game::Create()
+{
+	return std::make_shared<Game>(Game());
+}
+
 void Game::Initialize()
 {
 	numPlayer = 0;
@@ -20,7 +25,7 @@ void Game::Initialize()
 
 void Game::AddPlayer(const string& name, const Controller::Type type)
 {
-	shared_ptr<Player> newPlayer = make_shared<Player>(numPlayer, name, type);
+	shared_ptr<Player> newPlayer = Player::Create(numPlayer, name, type, shared_from_this());
 	numPlayer++;
 
 	players.push_back(newPlayer);

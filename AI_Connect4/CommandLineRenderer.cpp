@@ -5,9 +5,9 @@
 
 using namespace std;
 
-void CommandlineRenderer::Render(const Game& game) const
+void CommandlineRenderer::Render(const std::shared_ptr<Game>& game) const
 {
-	const Map& map = game.GetGameMap();
+	const Map& map = game->GetGameMap();
 
 	for (Row row = MAX_ROW - 1; row >= 0; row--)
 	{

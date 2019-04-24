@@ -8,10 +8,12 @@
 
 class Player;
 
-class Game
+class Game : public std::enable_shared_from_this<Game>
 {
 
 public:
+	static std::shared_ptr<Game> Create();
+
 	void Initialize();
 	void AddPlayer(const std::string& name, const Controller::Type type);
 	void Update();
@@ -22,6 +24,7 @@ public:
 	bool isGameFinished();
 
 private:
+	Game() = default;
 	Coord GetCoordFromMap(const Column& column, bool& isValid);
 	void SetCoordToMap(const std::shared_ptr<Player>& player, const Coord& coord);
 	bool CheckGameEndBy4Connected(const Coord& coord, const ID& id);

@@ -8,32 +8,15 @@
 using namespace std;
 
 
-Player::Player(ID id, std::string name, const Controller::Type type, const std::shared_ptr<Game>& game)
+Player::Player(ID id, std::string name, const std::shared_ptr<Game>& game)
 	:id(id), name(name), game(game)
 {
 
 }
 
-void Player::AddController(const Controller::Type type)
+void Player::SetController(std::shared_ptr<Controller>& controller)
 {
-	switch (type)
-	{
-		case Controller::Type::KEYBOARD:
-			controller = make_shared<KeyboardController>(shared_from_this());
-			break;
-		case Controller::Type::RANDOM:
-			controller = make_shared<AIRandomController>(shared_from_this());
-			break;
-		default:
-			break;
-	}
-}
-
-std::shared_ptr<Player> Player::Create(ID id, std::string name, const Controller::Type type, const std::shared_ptr<Game>& game)
-{
-	shared_ptr<Player> player = make_shared<Player>(Player(id, name, type, game));
-	player->AddController(type);
-	return player;
+	this->controller = std::move(controller);
 }
 
 Column Player::GetPlayerInput()

@@ -9,8 +9,6 @@
 
 class Game;
 
-enum class Controller::Type;
-
 class Player : public std::enable_shared_from_this<Player>
 {
 	friend std::ostream& operator <<(std::ostream& stream, const Player& player)
@@ -20,7 +18,14 @@ class Player : public std::enable_shared_from_this<Player>
 	}
 
 public:
-	static std::shared_ptr<Player> Create(ID id, std::string name, const Controller::Type type, const std::shared_ptr<Game>& game);
+	template<typename T>
+	static std::shared_ptr<Player> Create(ID id, std::string name, const std::shared_ptr<Game>& game)
+	{
+		std::shared_ptr<Player> player = std::make_shared<Player>(Player(id, name, game));
+		std::shared_ptr<Controller> controller = std::make_shared<T>(player);
+		player->SetController(controller);
+		return player;
+	}
 
 	Column GetPlayerInput();
 
@@ -28,8 +33,8 @@ public:
 	const ID& GetPlayerID() const;
 
 private:
-	Player(ID id, std::string name, const Controller::Type type, const std::shared_ptr<Game>& game);
-	void AddController(const Controller::Type type);
+	Player(ID id, std::string name, const std::shared_ptr<Game>& game);
+	void SetController(std::shared_ptr<Controller>& controller);
 
 private:
 	ID id;

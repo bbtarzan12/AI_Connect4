@@ -8,7 +8,7 @@ class AIMostWinningLineController : public Controller
 {
 
 public:
-
+	AIMostWinningLineController(const std::shared_ptr<Player>& player);
 	virtual Column GetPlayerInput() override;
 
 };

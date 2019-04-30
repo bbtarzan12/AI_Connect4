@@ -23,14 +23,6 @@ void Game::Initialize()
 	}
 }
 
-void Game::AddPlayer(const string& name, const Controller::Type type)
-{
-	shared_ptr<Player> newPlayer = Player::Create(numPlayer, name, type, shared_from_this());
-	numPlayer++;
-
-	players.push_back(newPlayer);
-}
-
 void Game::Update()
 {
 	const shared_ptr<Player>& player = players.at(currentTurnPlayerID);

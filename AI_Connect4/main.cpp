@@ -1,5 +1,8 @@
 #include "Game.h"
 #include "CommandLineRenderer.h"
+#include "AIRandomController.h"
+
+
 
 int main()
 {
@@ -8,8 +11,8 @@ int main()
 
 	game->Initialize();
 
-	game->AddPlayer("First", Controller::Type::RANDOM);
-	game->AddPlayer("Second", Controller::Type::RANDOM);
+	game->AddPlayer<AIRandomController>("First");
+	game->AddPlayer<AIRandomController>("Second");
 
 	while (!game->isGameFinished())
 	{

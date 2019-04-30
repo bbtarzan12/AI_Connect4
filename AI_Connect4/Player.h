@@ -5,6 +5,7 @@
 #include <memory>
 
 #include "Type.h"
+#include "Map.h"
 #include "Controller.h"
 
 class Game;
@@ -29,7 +30,7 @@ public:
 
 	Column GetPlayerInput();
 
-	const Map& GetGameMap() const;
+	Map& GetGameMap() const;
 	const ID& GetPlayerID() const;
 
 private:

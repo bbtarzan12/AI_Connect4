@@ -118,20 +118,24 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="AIMostWinningLineController.cpp" />
+    <ClCompile Include="AIDumbController.cpp" />
     <ClCompile Include="CommandLineRenderer.cpp" />
     <ClCompile Include="Game.cpp" />
+    <ClCompile Include="Heuristic.cpp" />
     <ClCompile Include="KeyboardController.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="Map.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="Random.cpp" />
     <ClCompile Include="AIRandomController.cpp" />
     <ClCompile Include="Renderer.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="AIMostWinningLineController.h" />
+    <ClInclude Include="AIDumbController.h" />
     <ClInclude Include="CommandLineRenderer.h" />
+    <ClInclude Include="Heuristic.h" />
     <ClInclude Include="KeyboardController.h" />
+    <ClInclude Include="Map.h" />
     <ClInclude Include="Random.h" />
     <ClInclude Include="AIRandomController.h" />
     <ClInclude Include="Renderer.h" />

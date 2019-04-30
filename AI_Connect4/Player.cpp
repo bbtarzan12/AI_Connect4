@@ -29,7 +29,7 @@ const ID& Player::GetPlayerID() const
 	return id;
 }
 
-const Map& Player::GetGameMap() const
+Map& Player::GetGameMap() const
 {
 	// gameÀÌ nullÀÌ¸é???!!!
 	return game->GetGameMap();

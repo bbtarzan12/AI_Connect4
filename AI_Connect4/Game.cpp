@@ -13,14 +13,6 @@ void Game::Initialize()
 {
 	numPlayer = 0;
 	isGameEnd = false;
-
-	for (Column column = 0; column < MAX_COLUMN; column++)
-	{
-		for (Row row = 0; row < MAX_ROW; row++)
-		{
-			map[column][row] = EMPTY_ID;
-		}
-	}
 }
 
 void Game::Update()
@@ -34,7 +26,7 @@ void Game::Update()
 	while (!isValidCoord)
 	{
 		const Column& column = player->GetPlayerInput();
-		coord = GetCoordFromMap(column, isValidCoord);
+		coord = map.GetCoord(column, isValidCoord);
 
 		if (!isValidCoord)
 		{
@@ -42,9 +34,9 @@ void Game::Update()
 		}
 	}
 
-	SetCoordToMap(player, coord);
+	map.SetCoord(player->GetPlayerID(), coord);
 
-	if (isGameEnd = CheckGameEndBy4Connected(coord, player->GetPlayerID()) || CheckMapIsFull())
+	if (isGameEnd = CheckGameEndBy4Connected(coord, player->GetPlayerID()) || map.IsMapFull())
 	{
 		cout << "Game End!!" << endl;
 	}
@@ -64,7 +56,7 @@ void Game::Release()
 }
 
 
-const Map& Game::GetGameMap() const
+Map& Game::GetGameMap()
 {
 	return map;
 }
@@ -72,26 +64,6 @@ const Map& Game::GetGameMap() const
 bool Game::isGameFinished()
 {
 	return isGameEnd;
-}
-
-Coord Game::GetCoordFromMap(const Column& column, bool& isValid)
-{
-	for (Row row = 0; row < MAX_ROW; row++)
-	{
-		if (map[column][row] != EMPTY_ID)
-			continue;
-
-		isValid = true;
-		return Coord(column, row);
-	}
-
-	isValid = false;
-	return Coord();
-}
-
-void Game::SetCoordToMap(const shared_ptr<Player>& player, const Coord& coord)
-{
-	map[coord.first][coord.second] = player->GetPlayerID();
 }
 
 bool Game::CheckGameEndBy4Connected(const Coord& coord, const ID& id)
@@ -143,18 +115,5 @@ bool Game::CheckCoordIsInBound(const Column& column, const Row& row)
 	if (row >= MAX_ROW || row < 0)
 		return false;
 
-	return true;
-}
-
-bool Game::CheckMapIsFull()
-{
-	for (Column column = 0; column < MAX_COLUMN; column++)
-	{
-		for (Row row = 0; row < MAX_ROW; row++)
-		{
-			if (map[column][row] == EMPTY_ID)
-				return false;
-		}
-	}
 	return true;
 }

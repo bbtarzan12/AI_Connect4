@@ -1,7 +1,8 @@
 #include "Game.h"
 #include "CommandLineRenderer.h"
-#include "AIRandomController.h"
 #include "KeyboardController.h"
+#include "AIDumbController.h"
+#include <iostream>
 
 
 int main()
@@ -12,7 +13,7 @@ int main()
 	game->Initialize();
 
 	game->AddPlayer<KeyboardController>("First");
-	game->AddPlayer<AIRandomController>("Second");
+	game->AddPlayer<AIDumbController>("Second");
 
 	while (!game->isGameFinished())
 	{

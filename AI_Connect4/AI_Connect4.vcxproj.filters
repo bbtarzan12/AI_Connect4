@@ -63,8 +63,14 @@
     <ClCompile Include="AIRandomController.cpp">
       <Filter>소스 파일\Controller</Filter>
     </ClCompile>
-    <ClCompile Include="AIMostWinningLineController.cpp">
+    <ClCompile Include="AIDumbController.cpp">
       <Filter>소스 파일\Controller</Filter>
+    </ClCompile>
+    <ClCompile Include="Heuristic.cpp">
+      <Filter>소스 파일\Base</Filter>
+    </ClCompile>
+    <ClCompile Include="Map.cpp">
+      <Filter>소스 파일\Base</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -95,8 +101,14 @@
     <ClInclude Include="AIRandomController.h">
       <Filter>헤더 파일\Controller</Filter>
     </ClInclude>
-    <ClInclude Include="AIMostWinningLineController.h">
+    <ClInclude Include="AIDumbController.h">
       <Filter>헤더 파일\Controller</Filter>
+    </ClInclude>
+    <ClInclude Include="Heuristic.h">
+      <Filter>헤더 파일\Base</Filter>
+    </ClInclude>
+    <ClInclude Include="Map.h">
+      <Filter>헤더 파일\Base</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

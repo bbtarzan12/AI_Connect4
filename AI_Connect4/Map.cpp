@@ -11,20 +11,20 @@ Map::Map()
 	}
 }
 
-bool Map::IsMapFull()
+bool Map::IsMapFull() const
 {
-	for (Column column = 0; column < MAX_COLUMN; column++)
+	for (const auto & column : data)
 	{
-		for (Row row = 0; row < MAX_ROW; row++)
+		for (int row : column)
 		{
-			if (data[column][row] == EMPTY_ID)
+			if (row == EMPTY_ID)
 				return false;
 		}
 	}
 	return true;
 }
 
-Coord Map::GetCoord(const Column column, bool& isValid)
+Coord Map::GetEmptyCoord(const Column column, bool& isValid) const
 {
 	for (Row row = 0; row < MAX_ROW; row++)
 	{
@@ -39,7 +39,25 @@ Coord Map::GetCoord(const Column column, bool& isValid)
 	return Coord();
 }
 
-void Map::SetCoord(const ID id, const Coord& coord)
+Coord Map::GetSurfaceCoord(const Column column) const
+{
+	for (Row row = 0; row < MAX_ROW; row++)
+	{
+		if (data[column][row] != EMPTY_ID)
+			continue;
+
+		return Coord(column, row - 1);
+	}
+
+	return Coord(column, MAX_ROW - 1);
+}
+
+void Map::SetCoord(const ID id, const Coord coord)
 {
 	data[coord.first][coord.second] = id;
+}
+
+void Map::RemoveCoord(const Coord coord)
+{
+	data[coord.first][coord.second] = EMPTY_ID;
 }

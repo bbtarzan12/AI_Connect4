@@ -26,7 +26,7 @@ void Game::Update()
 	while (!isValidCoord)
 	{
 		const Column& column = player->GetPlayerInput();
-		coord = map.GetCoord(column, isValidCoord);
+		coord = map.GetEmptyCoord(column, isValidCoord);
 
 		if (!isValidCoord)
 		{

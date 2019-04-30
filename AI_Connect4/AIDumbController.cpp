@@ -17,21 +17,22 @@ Column AIDumbController::GetPlayerInput()
 
 	ScoreArray scoreArray;
 
-	Map testMap = map;
 	for (Column column = 0; column < MAX_COLUMN; column++)
 	{
 
 		bool isvalid = false;
-		Coord coord = testMap.GetCoord(column, isvalid);
+		Coord coord = map.GetEmptyCoord(column, isvalid);
 		if (!isvalid)
 		{
 			scoreArray[column] = -1;
 			continue;
 		}
 
-		testMap.SetCoord(id, coord);
+		map.SetCoord(id, coord);
 
-		scoreArray[column] = Heuristic::Dumb(testMap, id);
+		scoreArray[column] = Heuristic::Dumb(map, id);
+
+		map.RemoveCoord(coord);
 	}
 
 	return Column();

@@ -32,9 +32,11 @@ public:
 	}
 
 public:
-	bool IsMapFull();
-	Coord GetCoord(const Column column, bool& isValid);
-	void SetCoord(const ID id, const Coord& coord);
+	bool IsMapFull() const;
+	Coord GetEmptyCoord(const Column column, bool& isValid) const;
+	Coord GetSurfaceCoord(const Column column) const;
+	void SetCoord(const ID id, const Coord coord);
+	void RemoveCoord(const Coord coord);
 
 };
 

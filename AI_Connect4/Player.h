@@ -31,7 +31,7 @@ public:
 	Column GetPlayerInput();
 
 	Map& GetGameMap() const;
-	const ID& GetPlayerID() const;
+	const ID GetPlayerID() const;
 
 private:
 	Player(ID id, std::string name, const std::shared_ptr<Game>& game);

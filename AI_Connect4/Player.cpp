@@ -24,7 +24,7 @@ Column Player::GetPlayerInput()
 	return controller->GetPlayerInput();
 }
 
-const ID& Player::GetPlayerID() const
+const ID Player::GetPlayerID() const
 {
 	return id;
 }

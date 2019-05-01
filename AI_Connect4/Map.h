@@ -2,6 +2,7 @@
 #define H_MAP
 
 #include "Type.h"
+#include <vector>
 
 class Map
 {
@@ -37,6 +38,11 @@ public:
 	Coord GetSurfaceCoord(const Column column) const;
 	void SetCoord(const ID id, const Coord coord);
 	void RemoveCoord(const Coord coord);
+	void GetNumOfNeighbors(const Coord coord, const ID id, std::vector<int>& neighbors, bool selfContained = true);
+	bool CheckCoordIsInBound(const Column column, const Row row);
+
+private:
+	int GetNumOfNeighbor(const Coord originCoord, const int deltaColumn, const int deltaRow, const ID id);
 
 };
 

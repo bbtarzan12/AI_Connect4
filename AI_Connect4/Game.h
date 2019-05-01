@@ -33,9 +33,7 @@ public:
 
 private:
 	Game() = default;
-	bool CheckGameEndBy4Connected(const Coord& coord, const ID& id);
-	int GetNumOfNeighbor(const Coord& originCoord, const int& deltaColumn, const int& deltaRow, const ID& id);
-	bool CheckCoordIsInBound(const Column& column, const Row& row);
+	bool CheckGameEndBy4Connected(const Coord coord, const ID id);
 
 private:
 	Map map;

@@ -2,6 +2,7 @@
 #include "Heuristic.h"
 #include "Player.h"
 #include <iostream>
+#include <algorithm>
 
 using namespace std;
 
@@ -13,7 +14,8 @@ AIDumbController::AIDumbController(const shared_ptr<Player>& player)
 Column AIDumbController::GetPlayerInput()
 {
 	Map& map = player->GetGameMap();
-	const ID& id = player->GetPlayerID();
+	const ID id = player->GetPlayerID();
+	const ID opponentID = id ^ 1; // Todo : Game의 Player Vector를 그냥 player 1, 2로 바꾸자
 
 	ScoreArray scoreArray;
 
@@ -28,12 +30,28 @@ Column AIDumbController::GetPlayerInput()
 			continue;
 		}
 
+		Score score = 0;
+
 		map.SetCoord(id, coord);
+		score += Heuristic::Reward(map, coord, id);
 
-		scoreArray[column] = Heuristic::Dumb(map, id);
-
+		Coord threatCoord = Coord(coord.first, coord.second + 1);
+		if (map.CheckCoordIsInBound(threatCoord.first, threatCoord.second))
+		{
+			score -= Heuristic::Threat(map, threatCoord, opponentID);
+		}
 		map.RemoveCoord(coord);
+
+
+		map.SetCoord(opponentID, coord);
+		score += Heuristic::Defense(map, coord, opponentID);
+		map.RemoveCoord(coord);
+
+
+		scoreArray[column] = score;
 	}
 
-	return Column();
+	Column maxHeuristicColumn = (max_element(scoreArray, scoreArray + MAX_COLUMN) - scoreArray);
+
+	return maxHeuristicColumn;
 }

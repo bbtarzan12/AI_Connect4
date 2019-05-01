@@ -2,30 +2,74 @@
 #include "Type.h"
 #include <iostream>
 #include <vector>
+#include <algorithm>
 
 using namespace std;
 
-Score Heuristic::Dumb(Map& map, const ID id)
+Score Heuristic::Reward(Map& map, const Coord coord, const ID id)
 {
-	vector<Coord> surfaces;
+	Score score = 0;
+	vector<int> numOfNeighbors;
+	map.GetNumOfNeighbors(coord, id, numOfNeighbors, false);
 
-	for (Column column = 0; column < MAX_COLUMN; column++)
+	for (auto & numOfNeighbor : numOfNeighbors)
 	{
-		bool isValid = false;
-		Coord coord = map.GetEmptyCoord(column, isValid);
+		score += GetNeighborRewardScore(numOfNeighbor);
+	}
+	
+	return score;
+}
 
-		if (!isValid)
-		{
-			continue;
-		}
+Score Heuristic::Defense(Map& map, const Coord coord, const ID id)
+{
+	Score score = 0;
+	vector<int> numOfNeighbors;
+	map.GetNumOfNeighbors(coord, id, numOfNeighbors, false);
 
-		surfaces.push_back(coord);
+	for (auto & numOfNeighbor : numOfNeighbors)
+	{
+		score += GetNeighborDefenseScore(numOfNeighbor);
 	}
 
-	for (auto & surface : surfaces)
+	return score;
+}
+
+Score Heuristic::Threat(Map& map, const Coord coord, const ID id)
+{
+	Score score = 0;
+	vector<int> numOfNeighbors;
+	map.GetNumOfNeighbors(coord, id, numOfNeighbors, false);
+
+	for (auto & numOfNeighbor : numOfNeighbors)
 	{
-
+		score += GetNeighborThreatScore(numOfNeighbor);
 	}
+	return score;
+}
 
-	return 1;
+Score Heuristic::GetNeighborRewardScore(const int numOfNeighbor)
+{
+	switch (numOfNeighbor)
+	{
+		case 0: return 0;
+		case 1: return 4;
+		case 2: return 9;
+		default: return 999;
+	}
+}
+
+Score Heuristic::GetNeighborDefenseScore(const int numOfNeighbor)
+{
+	return GetNeighborRewardScore(numOfNeighbor);
+}
+
+Score Heuristic::GetNeighborThreatScore(const int numOfNeighbor)
+{
+	switch (numOfNeighbor)
+	{
+		case 0: return 0;
+		case 1: return 2;
+		case 2: return 5;
+		default: return 999;
+	}
 }

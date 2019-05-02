@@ -26,3 +26,23 @@ void CommandlineRenderer::Render(const std::shared_ptr<Game>& game) const
 	}
 	cout << endl;
 }
+
+void CommandlineRenderer::Dump(Map& map)
+{
+	for (Row row = MAX_ROW - 1; row >= 0; row--)
+	{
+		for (Column column = 0; column < MAX_COLUMN; column++)
+		{
+			const ID& id = map[column][row];
+
+			if (id == EMPTY_ID)
+				cout << "   ";
+			else
+				cout << " " << id << " ";
+
+			cout << "¦¢";
+		}
+		cout << endl;
+	}
+	cout << endl;
+}

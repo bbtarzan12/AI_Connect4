@@ -1,5 +1,6 @@
 #include "Map.h"
 #include <iostream>
+#include <algorithm>
 
 Map::Map()
 {
@@ -10,18 +11,18 @@ Map::Map()
 			row = EMPTY_ID;
 		}
 	}
+	winID = EMPTY_ID;
 }
 
-bool Map::IsMapFull() const
+bool Map::IsMapFull()
 {
-	for (const auto & column : data)
+	for (auto & column : data)
 	{
-		for (int row : column)
-		{
-			if (row == EMPTY_ID)
-				return false;
-		}
+		if (column[MAX_ROW - 1] == EMPTY_ID)
+			return false;
 	}
+
+	winID = EMPTY_ID;
 	return true;
 }
 
@@ -53,13 +54,23 @@ Coord Map::GetSurfaceCoord(const Column column) const
 	return Coord(column, MAX_ROW - 1);
 }
 
+bool Map::IsColumnValid(const Column column) const
+{
+	return data[column][MAX_ROW - 1] == EMPTY_ID;
+}
+
 void Map::SetCoord(const ID id, const Coord coord)
 {
+	if (!CheckCoordIsInBound(coord.first, coord.second))
+		return;
+	lastMove = coord;
 	data[coord.first][coord.second] = id;
 }
 
 void Map::RemoveCoord(const Coord coord)
 {
+	if (!CheckCoordIsInBound(coord.first, coord.second))
+		return;
 	data[coord.first][coord.second] = EMPTY_ID;
 }
 
@@ -110,4 +121,17 @@ bool Map::CheckCoordIsInBound(const Column column, const Row row)
 		return false;
 
 	return true;
+}
+
+bool Map::IsGameEnd(const Coord coord, const ID id)
+{
+	std::vector<int> numOfNeighbors;
+	GetNumOfNeighbors(coord, id, numOfNeighbors);
+	int maxNeighbor = *max_element(numOfNeighbors.begin(), numOfNeighbors.end());
+	if (maxNeighbor >= 4)
+	{
+		winID = id;
+		return true;
+	}
+	return false;
 }

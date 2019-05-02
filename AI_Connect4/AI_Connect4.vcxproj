@@ -87,6 +87,8 @@
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
+      <HeapReserveSize>
+      </HeapReserveSize>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -111,14 +113,21 @@
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
+      <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
+      <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
+      <FloatingPointModel>Fast</FloatingPointModel>
     </ClCompile>
     <Link>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
+      <HeapReserveSize>
+      </HeapReserveSize>
+      <SubSystem>Console</SubSystem>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="AIDumbController.cpp" />
+    <ClCompile Include="AIAlphaBetaController.cpp" />
+    <ClCompile Include="AIMCTSController.cpp" />
     <ClCompile Include="CommandLineRenderer.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="Heuristic.cpp" />
@@ -131,7 +140,8 @@
     <ClCompile Include="Renderer.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="AIDumbController.h" />
+    <ClInclude Include="AIAlphaBetaController.h" />
+    <ClInclude Include="AIMCTSController.h" />
     <ClInclude Include="CommandLineRenderer.h" />
     <ClInclude Include="Heuristic.h" />
     <ClInclude Include="KeyboardController.h" />

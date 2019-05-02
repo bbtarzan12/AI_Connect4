@@ -37,9 +37,17 @@ void Game::Update()
 
 	map.SetCoord(player->GetPlayerID(), coord);
 
-	if (isGameEnd = CheckGameEndBy4Connected(coord, player->GetPlayerID()) || map.IsMapFull())
+	if (isGameEnd = map.IsGameEnd(coord, player->GetPlayerID()) || map.IsMapFull())
 	{
 		cout << "Game End!!" << endl;
+		if (map.winID == EMPTY_ID)
+		{
+			cout << "Draw!!" << endl;
+		}
+		else
+		{
+			cout << *players.at(map.winID) << " win!!" << endl;
+		}
 	}
 
 	currentTurnPlayerID++;
@@ -65,12 +73,4 @@ Map& Game::GetGameMap()
 bool Game::isGameFinished()
 {
 	return isGameEnd;
-}
-
-bool Game::CheckGameEndBy4Connected(const Coord coord, const ID id)
-{
-	std::vector<int> numOfNeighbors;
-	map.GetNumOfNeighbors(coord, id, numOfNeighbors);
-	int maxNeighbor = *max_element(numOfNeighbors.begin(), numOfNeighbors.end());
-	return maxNeighbor >= 4;
 }

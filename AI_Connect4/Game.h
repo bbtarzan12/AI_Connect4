@@ -33,7 +33,6 @@ public:
 
 private:
 	Game() = default;
-	bool CheckGameEndBy4Connected(const Coord coord, const ID id);
 
 private:
 	Map map;

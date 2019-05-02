@@ -6,7 +6,7 @@ uint32_t XOR128::seed = 1;
 
 float XOR128::Random()
 {
-	return (float) xor128() / 0xffffffff;
+	return (float) xor128() / 0xffffffff; // 0xffffffff
 }
 
 uint32_t XOR128::xor128()

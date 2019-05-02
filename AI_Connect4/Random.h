@@ -17,7 +17,7 @@ public:
 	// [min, max] Uniform Random
 	static int Random(int min, int max)
 	{
-		return floor(T::Random() * (max - min + 1)) + min;
+		return floor((T::Random()) * (max - min + 1)) + min;
 	}
 };
 

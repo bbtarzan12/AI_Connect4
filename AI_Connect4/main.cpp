@@ -13,8 +13,8 @@ int main()
 
 	game->Initialize();
 
-	game->AddPlayer<AIMCTSController>("First");
-	game->AddPlayer<AIAlphaBetaController>("Second");
+	game->AddPlayer<KeyboardController>("Player");
+	game->AddPlayer<AIAlphaBetaController>("AI");
 
 	while (!game->isGameFinished())
 	{
@@ -23,5 +23,6 @@ int main()
 	}
 
 	game->Release();
+
 	return 0;
 }

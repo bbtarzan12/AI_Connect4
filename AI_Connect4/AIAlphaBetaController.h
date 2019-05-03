@@ -15,8 +15,11 @@ public:
 
 	struct Node
 	{
+		Node() {}
 		Node(Map map) : map(map) { }
+		ID id;
 		Map map;
+		Node* parent = nullptr;
 		Coord coord;
 		Score score = 0;
 		Column column = 0;
@@ -30,10 +33,11 @@ public:
 		Column GetMaxScoreColumn();
 	private:
 		Score AlphaBetaPruning(Node* node, int depth, Score alpha, Score beta, bool isMaximizingPlayer);
-		Score NegaMax(Node* node, int depth, Score alpha, Score beta, bool isMaximizingPlayer);
+		Score NegaMax(Node* node, int depth, Score alpha, Score beta);
 
 	private:
-		Node* root;
+		Node root;
+		Node* bestNode;
 		ID id;
 		int maxDepth;
 		Map map;

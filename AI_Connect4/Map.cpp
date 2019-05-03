@@ -85,9 +85,6 @@ void Map::GetNumOfNeighbors(const Coord coord, const ID id, std::vector<int>& ne
 	{
 		for (int neighborRow = row - 1; neighborRow <= row; neighborRow++)
 		{
-			if (!CheckCoordIsInBound(neighborColumn, neighborRow))
-				continue;
-
 			if (neighborColumn == column && neighborRow == row)
 				continue;
 
@@ -112,9 +109,6 @@ void Map::GetNumOfNeighbors(const Coord coord, const ID id, int* neighbors, bool
 	{
 		for (int neighborRow = row - 1; neighborRow <= row; neighborRow++)
 		{
-			if (!CheckCoordIsInBound(neighborColumn, neighborRow))
-				continue;
-
 			if (neighborColumn == column && neighborRow == row)
 				continue;
 			
@@ -157,7 +151,7 @@ bool Map::CheckCoordIsInBound(const Column column, const Row row)
 
 bool Map::IsGameEnd(const Coord coord, const ID id)
 {
-	int numOfNeighbors[4] = { 0 };
+	int numOfNeighbors[4] = { 0, 0, 0, 0 };
 	GetNumOfNeighbors(coord, id, &numOfNeighbors[0]);
 
 	int maxNeighbor = *max_element(numOfNeighbors, numOfNeighbors + 4);

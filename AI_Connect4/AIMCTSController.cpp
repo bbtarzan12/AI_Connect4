@@ -4,8 +4,10 @@
 #include "Player.h"
 #include "Random.h"
 #include "CommandLineRenderer.h"
+#include <chrono>
 
 using namespace std;
+using namespace std::chrono;
 
 AIMCTSController::AIMCTSController(const std::shared_ptr<Player>& player)
 {
@@ -20,7 +22,8 @@ Column AIMCTSController::GetPlayerInput()
 	Node root = Node(id, nullptr);
 	root.map = map;
 
-	for (int numSimulation = 1; numSimulation <= 10000; numSimulation++)
+	auto start = high_resolution_clock::now();
+	for (int numSimulation = 1; numSimulation <= 100000; numSimulation++)
 	{
 		// Selection
 		Node* selectedNode = Selection(&root);
@@ -34,12 +37,16 @@ Column AIMCTSController::GetPlayerInput()
 		// Simulation
 		int totalSimulation = 0;
 		int totalWin = 0;
-		Simulation(expandedNode, 1000, totalSimulation, totalWin);
+		Simulation(expandedNode, 1500, totalSimulation, totalWin);
 
 		// Backpropagation
 		Backpropagation(expandedNode, expandedNode->id, totalSimulation, totalWin);
 
 	}
+	auto stop = high_resolution_clock::now();
+	auto duration = duration_cast<milliseconds>(stop - start);
+	cout << duration.count() / 1000.0f << "초 걸렸습니다 (초당 " << (int)(root.simulations / (duration.count() / 1000.0f)) << " 시뮬레이션)" << endl;
+
 	cout << "Root Simulation : " << root.simulations << " Win : " << root.wins << endl;
 	for (auto & child : root.childs)
 	{
@@ -89,7 +96,8 @@ AIMCTSController::Node* AIMCTSController::Expansion(Node* node)
 void AIMCTSController::Simulation(Node* node, int maxSimulation, int& totalSimulation, int& totalWin)
 {
 
-	for (totalSimulation = 1; totalSimulation <= maxSimulation; totalSimulation++)
+#pragma omp parallel for
+	for (int i = 0 ; i < maxSimulation; i++)
 	{
 		ID currentID = node->id;
 		Map map = node->map;
@@ -113,14 +121,14 @@ void AIMCTSController::Simulation(Node* node, int maxSimulation, int& totalSimul
 			{
 				cout << "Un Error Occured 1" << endl;
 				CommandlineRenderer::Dump(map);
-				return;
+				break;
 			}
 
 			int randomIndex = RandomGenerator<XOR128>::Random(0, numOfValidColumns - 1);
 			if (randomIndex >= numOfValidColumns)
 			{
 				cout << "randomIndex >= numOfValidColumns" << endl;
-				return;
+				break;
 			}
 
 			Column randomColumn = validColumns[randomIndex];
@@ -131,17 +139,17 @@ void AIMCTSController::Simulation(Node* node, int maxSimulation, int& totalSimul
 			{
 				cout << "Un Error Occured Coord : " << randomCoord.first << ", " << randomCoord.second << endl;
 				CommandlineRenderer::Dump(map);
-				return;
+				break;
 			}
 
 			map.SetCoord(currentID, randomCoord);
 			lastMove = randomCoord;
 		}
 
-		if (map.winID != EMPTY_ID && map.winID != node->id) // ex) 노드가 id 1 인데 승리한 id가 0이면 win++
-		{
-			totalWin++;
-		}
+#pragma omp atomic
+			totalSimulation++;
+#pragma omp atomic
+			totalWin += (map.winID != EMPTY_ID && map.winID != node->id) ? 1 : 0;
 	}
 
 }

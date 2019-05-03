@@ -13,14 +13,14 @@ public:
 	// [min, max] Uniform Random
 	static int Random(int min, int max)
 	{
-		return PSEUDO_FLOOR((T::Random()) * (max - min + 1)) + min;
+		return PSEUDO_FLOOR(T::Random() * (max - min + 1)) + min;
 	}
 };
 
 class XOR128
 {
 public:
-	static float Random();
+	static double Random();
 
 private:
 	static uint32_t xor128();

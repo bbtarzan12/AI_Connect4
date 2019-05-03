@@ -4,9 +4,9 @@
 
 uint32_t XOR128::seed = 1;
 
-float XOR128::Random()
+double XOR128::Random()
 {
-	return (float) xor128() / 0xffffffff;
+	return (double) xor128() / (0xffffffff);
 }
 
 uint32_t XOR128::xor128()

@@ -56,6 +56,18 @@ Coord Map::GetSurfaceCoord(const Column column) const
 	return Coord(column, MAX_ROW - 1);
 }
 
+int Map::GetNumOfEmptyTop() const
+{
+	int emptyTop = 0;
+	for (auto & column : data)
+	{
+		if (column[MAX_ROW - 1] == EMPTY_ID)
+			emptyTop++;
+	}
+
+	return emptyTop;
+}
+
 bool Map::IsColumnValid(const Column column) const
 {
 	return data[column][MAX_ROW - 1] == EMPTY_ID;
@@ -74,29 +86,6 @@ void Map::RemoveCoord(const Coord coord)
 	if (!CheckCoordIsInBound(coord.first, coord.second))
 		return;
 	data[coord.first][coord.second] = EMPTY_ID;
-}
-
-void Map::GetNumOfNeighbors(const Coord coord, const ID id, std::vector<int>& neighbors, bool selfContained)
-{
-	const Column& column = coord.first;
-	const Row& row = coord.second;
-
-	for (int neighborColumn = column - 1; neighborColumn <= column + 1; neighborColumn++)
-	{
-		for (int neighborRow = row - 1; neighborRow <= row; neighborRow++)
-		{
-			if (neighborColumn == column && neighborRow == row)
-				continue;
-
-			if (neighborColumn == column + 1 && neighborRow == row)
-				continue;
-
-			int deltaColumn = neighborColumn - column;
-			int deltaRow = neighborRow - row;
-			int numOfNeighbor = GetNumOfNeighbor(coord, deltaColumn, deltaRow, id) + GetNumOfNeighbor(coord, -deltaColumn, -deltaRow, id) + (selfContained ? 1 : 0);
-			neighbors.push_back(numOfNeighbor);
-		}
-	}
 }
 
 void Map::GetNumOfNeighbors(const Coord coord, const ID id, int* neighbors, bool selfContained /*= true*/)

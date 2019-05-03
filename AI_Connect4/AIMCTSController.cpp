@@ -90,7 +90,7 @@ AIMCTSController::Node* AIMCTSController::Expansion(Node* node)
 	if (node->childs.empty())
 		return nullptr;
 
-	return node->childs.at(RandomGenerator<XOR128>::Random(0, node->childs.size() - 1));
+	return node->childs[RandomGenerator<XOR128>::Random(0, node->childs.size() - 1)];
 }
 
 void AIMCTSController::Simulation(Node* node, int maxSimulation, int& totalSimulation, int& totalWin)

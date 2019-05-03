@@ -18,7 +18,7 @@ void Game::Initialize()
 
 void Game::Update()
 {
-	const shared_ptr<Player>& player = players.at(currentTurnPlayerID);
+	const shared_ptr<Player>& player = players[currentTurnPlayerID];
 	cout << *player << " Turn" << endl;
 
 	bool isValidCoord = false;
@@ -46,7 +46,7 @@ void Game::Update()
 		}
 		else
 		{
-			cout << *players.at(map.winID) << " win!!" << endl;
+			cout << *players[map.winID] << " win!!" << endl;
 		}
 	}
 

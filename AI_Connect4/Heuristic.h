@@ -9,12 +9,12 @@ class Heuristic
 {
 
 public:
-	static Score Dumb(Map& map, const Coord coord, const ID id);
+	static Score Dumb(Map* map, const Coord coord, const ID id);
 
 private:
-	static Score Reward(Map& map, const Coord coord, const ID id);
-	static Score Defense(Map& map, const Coord coord, const ID id);
-	static Score Threat(Map& map, const Coord coord, const ID id);
+	static Score Reward(Map* map, const Coord coord, const ID id);
+	static Score Defense(Map* map, const Coord coord, const ID id);
+	static Score Threat(Map* map, const Coord coord, const ID id);
 
 private:
 	static Score GetNeighborRewardScore(const int numOfNeighbor);

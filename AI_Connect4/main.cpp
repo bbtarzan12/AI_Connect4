@@ -13,8 +13,8 @@ int main()
 
 	game->Initialize();
 
-	game->AddPlayer<AIAlphaBetaController>("Alpha Beta");
 	game->AddPlayer<KeyboardController>("Player");
+	game->AddPlayer<AIAlphaBetaController>("Alpha Beta Depth 11");
 
 	while (!game->isGameFinished())
 	{

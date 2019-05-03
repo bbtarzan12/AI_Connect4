@@ -7,20 +7,20 @@
 
 using namespace std;
 
-Score Heuristic::Dumb(Map& map, const Coord coord, const ID currentID)
+Score Heuristic::Dumb(Map* map, const Coord coord, const ID currentID)
 {
 	const ID opponentID = currentID ^ 1;
 
 	Score score = 0;
 	Score reward = 0, defense = 0, threat = 0;
 
-	//map.SetCoord(currentID, coord);
+	//map->SetCoord(currentID, coord);
 	reward = Heuristic::Reward(map, coord, currentID);
 
 	//vector<Coord> surfaceCoords;
 	//for (Column column = 0; column < MAX_COLUMN; column++)
 	//{
-	//	Coord surfaceCoord = map.GetSurfaceCoord(column);
+	//	Coord surfaceCoord = map->GetSurfaceCoord(column);
 	//	if(map[surfaceCoord.first][surfaceCoord.second] == currentID)
 	//		continue;
 	//	surfaceCoords.push_back(surfaceCoord);
@@ -28,39 +28,39 @@ Score Heuristic::Dumb(Map& map, const Coord coord, const ID currentID)
 
 	//for (auto & surfaceCoord : surfaceCoords)
 	//{
-	//	//map.SetCoord(opponentID, surfaceCoord);
+	//	//map->SetCoord(opponentID, surfaceCoord);
 	//	threat += Heuristic::Threat(map, surfaceCoord, opponentID);
-	//	//map.RemoveCoord(surfaceCoord);
+	//	//map->RemoveCoord(surfaceCoord);
 	//}
 	//threat = (float) threat / surfaceCoords.size();
 
 	Coord threatCoord = Coord(coord.first, coord.second + 1);
-	if (map.CheckCoordIsInBound(threatCoord.first, threatCoord.second))
+	if (map->CheckCoordIsInBound(threatCoord.first, threatCoord.second))
 	{
-		map.SetCoord(opponentID, threatCoord);
+		map->SetCoord(opponentID, threatCoord);
 		threat = Heuristic::Threat(map, threatCoord, opponentID);
-		map.RemoveCoord(threatCoord);
+		map->RemoveCoord(threatCoord);
 	}
-	map.RemoveCoord(coord);
+	map->RemoveCoord(coord);
 
-	map.SetCoord(opponentID, coord);
+	map->SetCoord(opponentID, coord);
 	defense = Heuristic::Defense(map, coord, opponentID);
-	map.RemoveCoord(coord);
+	map->RemoveCoord(coord);
 
-	map.SetCoord(currentID, coord);
+	//map->SetCoord(currentID, coord);
 
 	score = reward + defense - threat;
 	//cout << "Leaf " << score << " " << currentID << " " << opponentID << endl;
 	//cout << "Reward : " << reward << " Defense : " << defense << " Threat : " << threat << endl;
-	//CommandlineRenderer::Dump(map);
+	//CommandlineRenderer::Dump(*map);
 	return score;
 }
 
-Score Heuristic::Reward(Map& map, const Coord coord, const ID id)
+Score Heuristic::Reward(Map* map, const Coord coord, const ID id)
 {
 	Score score = 0;
-	vector<int> numOfNeighbors;
-	map.GetNumOfNeighbors(coord, id, numOfNeighbors);
+	int numOfNeighbors[4] = { 0, 0, 0, 0 };
+	map->GetNumOfNeighbors(coord, id, numOfNeighbors);
 
 	for (auto & numOfNeighbor : numOfNeighbors)
 	{
@@ -70,11 +70,11 @@ Score Heuristic::Reward(Map& map, const Coord coord, const ID id)
 	return score;
 }
 
-Score Heuristic::Defense(Map& map, const Coord coord, const ID id)
+Score Heuristic::Defense(Map* map, const Coord coord, const ID id)
 {
 	Score score = 0;
-	vector<int> numOfNeighbors;
-	map.GetNumOfNeighbors(coord, id, numOfNeighbors);
+	int numOfNeighbors[4] = { 0, 0, 0, 0 };
+	map->GetNumOfNeighbors(coord, id, numOfNeighbors);
 
 	for (auto & numOfNeighbor : numOfNeighbors)
 	{
@@ -84,11 +84,11 @@ Score Heuristic::Defense(Map& map, const Coord coord, const ID id)
 	return score;
 }
 
-Score Heuristic::Threat(Map& map, const Coord coord, const ID id)
+Score Heuristic::Threat(Map* map, const Coord coord, const ID id)
 {
 	Score score = 0;
-	vector<int> numOfNeighbors;
-	map.GetNumOfNeighbors(coord, id, numOfNeighbors);
+	int numOfNeighbors[4] = { 0, 0, 0, 0 };
+	map->GetNumOfNeighbors(coord, id, numOfNeighbors);
 
 	for (auto & numOfNeighbor : numOfNeighbors)
 	{

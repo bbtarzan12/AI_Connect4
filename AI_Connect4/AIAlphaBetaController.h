@@ -17,7 +17,8 @@ public:
 	struct Node
 	{
 		Node() {}
-		~Node() 
+		Node(Map* map) : map(map) { }
+		~Node()
 		{
 			for (auto & child : childs)
 			{
@@ -25,12 +26,9 @@ public:
 			}
 			childs.clear();
 		}
-		Node(Map map) : map(map) { }
 		ID id;
-		Map map;
+		Map* map;
 		Coord coord;
-		Score score = 0;
-		Column column = 0;
 		std::vector<Node*> childs;
 	};
 
@@ -42,7 +40,7 @@ public:
 	private:
 		Score AlphaBetaPruning(Node* node, int depth, Score alpha, Score beta, bool isMaximizingPlayer);
 
-	private:
+	private:		
 		Node root;
 		Node* bestNode;
 		ID id;

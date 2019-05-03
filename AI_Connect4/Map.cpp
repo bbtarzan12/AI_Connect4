@@ -2,6 +2,8 @@
 #include <iostream>
 #include <algorithm>
 
+using namespace std;
+
 Map::Map()
 {
 	for (auto & column : data)
@@ -89,10 +91,40 @@ void Map::GetNumOfNeighbors(const Coord coord, const ID id, std::vector<int>& ne
 			if (neighborColumn == column && neighborRow == row)
 				continue;
 
+			if (neighborColumn == column + 1 && neighborRow == row)
+				continue;
+
 			int deltaColumn = neighborColumn - column;
 			int deltaRow = neighborRow - row;
 			int numOfNeighbor = GetNumOfNeighbor(coord, deltaColumn, deltaRow, id) + GetNumOfNeighbor(coord, -deltaColumn, -deltaRow, id) + (selfContained ? 1 : 0);
 			neighbors.push_back(numOfNeighbor);
+		}
+	}
+}
+
+void Map::GetNumOfNeighbors(const Coord coord, const ID id, int* neighbors, bool selfContained /*= true*/)
+{
+	const Column& column = coord.first;
+	const Row& row = coord.second;
+
+	int index = 0;
+	for (int neighborColumn = column - 1; neighborColumn <= column + 1; neighborColumn++)
+	{
+		for (int neighborRow = row - 1; neighborRow <= row; neighborRow++)
+		{
+			if (!CheckCoordIsInBound(neighborColumn, neighborRow))
+				continue;
+
+			if (neighborColumn == column && neighborRow == row)
+				continue;
+			
+			if (neighborColumn == column + 1 && neighborRow == row)
+				continue;
+
+			int deltaColumn = neighborColumn - column;
+			int deltaRow = neighborRow - row;
+			int numOfNeighbor = GetNumOfNeighbor(coord, deltaColumn, deltaRow, id) + GetNumOfNeighbor(coord, -deltaColumn, -deltaRow, id) + (selfContained ? 1 : 0);
+			neighbors[index++] = numOfNeighbor;
 		}
 	}
 }
@@ -125,9 +157,10 @@ bool Map::CheckCoordIsInBound(const Column column, const Row row)
 
 bool Map::IsGameEnd(const Coord coord, const ID id)
 {
-	std::vector<int> numOfNeighbors;
-	GetNumOfNeighbors(coord, id, numOfNeighbors);
-	int maxNeighbor = *max_element(numOfNeighbors.begin(), numOfNeighbors.end());
+	int numOfNeighbors[4] = { 0 };
+	GetNumOfNeighbors(coord, id, &numOfNeighbors[0]);
+
+	int maxNeighbor = *max_element(numOfNeighbors, numOfNeighbors + 4);
 	if (maxNeighbor >= 4)
 	{
 		winID = id;

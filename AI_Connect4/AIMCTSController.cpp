@@ -20,7 +20,7 @@ Column AIMCTSController::GetPlayerInput()
 	Node root = Node(id, nullptr);
 	root.map = map;
 
-	for (int numSimulation = 1; numSimulation <= 500000; numSimulation++)
+	for (int numSimulation = 1; numSimulation <= 10000; numSimulation++)
 	{
 		// Selection
 		Node* selectedNode = Selection(&root);
@@ -34,7 +34,7 @@ Column AIMCTSController::GetPlayerInput()
 		// Simulation
 		int totalSimulation = 0;
 		int totalWin = 0;
-		Simulation(expandedNode, 1, totalSimulation, totalWin);
+		Simulation(expandedNode, 1000, totalSimulation, totalWin);
 
 		// Backpropagation
 		Backpropagation(expandedNode, expandedNode->id, totalSimulation, totalWin);
@@ -88,6 +88,7 @@ AIMCTSController::Node* AIMCTSController::Expansion(Node* node)
 
 void AIMCTSController::Simulation(Node* node, int maxSimulation, int& totalSimulation, int& totalWin)
 {
+
 	for (totalSimulation = 1; totalSimulation <= maxSimulation; totalSimulation++)
 	{
 		ID currentID = node->id;
@@ -97,36 +98,38 @@ void AIMCTSController::Simulation(Node* node, int maxSimulation, int& totalSimul
 		while (!(map.IsGameEnd(lastMove, currentID) || map.IsMapFull()))
 		{
 			currentID = currentID ^ 1;
-			vector<Column> validColumns;
+			Column validColumns[MAX_COLUMN];
+			int numOfValidColumns = 0;
+
 			for (Column column = 0; column < MAX_COLUMN; column++)
 			{
 				if (!map.IsColumnValid(column))
 					continue;
 
-				validColumns.push_back(column);
+				validColumns[numOfValidColumns++] = column;
 			}
 
-			if (validColumns.empty())
+			if (numOfValidColumns == 0)
 			{
 				cout << "Un Error Occured 1" << endl;
 				CommandlineRenderer::Dump(map);
 				return;
 			}
 
-			int randomIndex = RandomGenerator<XOR128>::Random(0, validColumns.size() - 1);
-			if (randomIndex >= validColumns.size())
+			int randomIndex = RandomGenerator<XOR128>::Random(0, numOfValidColumns - 1);
+			if (randomIndex >= numOfValidColumns)
 			{
-				cout << "randomIndex >= validColumns.size()" << endl;
+				cout << "randomIndex >= numOfValidColumns" << endl;
 				return;
 			}
 
-			Column randomColumn = validColumns.at(randomIndex);
+			Column randomColumn = validColumns[randomIndex];
 
 			bool isValid = false;
 			Coord randomCoord = map.GetEmptyCoord(randomColumn, isValid);
 			if (!isValid)
 			{
-				cout << "Un Error Occured Coord : " << randomCoord.first << ", " << randomCoord.second << " validColumns.Size() : " << validColumns.size() << endl;
+				cout << "Un Error Occured Coord : " << randomCoord.first << ", " << randomCoord.second << endl;
 				CommandlineRenderer::Dump(map);
 				return;
 			}
@@ -151,6 +154,8 @@ void AIMCTSController::Backpropagation(Node* node, const ID winID, const int tot
 	node->simulations += totalSimulation;
 	if (node->id != winID && node->id != EMPTY_ID)
 		node->wins += totalWin;
+	else if (node->id == winID && node->id != EMPTY_ID)
+		node->wins += (totalSimulation - totalWin);
 
 	Backpropagation(node->parent, winID, totalSimulation, totalWin);
 }

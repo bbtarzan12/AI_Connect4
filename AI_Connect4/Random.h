@@ -8,16 +8,12 @@ class RandomGenerator
 {
 public:
 
-	// [min, max] Uniform Random
-	static float Random(float min, float max)
-	{
-		return floor(T::Random() * (max - min + 1)) + min;
-	}
+#define PSEUDO_FLOOR( V ) ((V) >= 0 ? (int)(V) : (int)((V) - 1))
 
 	// [min, max] Uniform Random
 	static int Random(int min, int max)
 	{
-		return floor((T::Random()) * (max - min + 1)) + min;
+		return PSEUDO_FLOOR((T::Random()) * (max - min + 1)) + min;
 	}
 };
 

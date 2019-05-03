@@ -13,7 +13,7 @@ int main()
 
 	game->Initialize();
 
-	game->AddPlayer<KeyboardController>("First");
+	game->AddPlayer<AIMCTSController>("First");
 	game->AddPlayer<AIAlphaBetaController>("Second");
 
 	while (!game->isGameFinished())

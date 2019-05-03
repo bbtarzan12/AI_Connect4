@@ -44,6 +44,7 @@ public:
 	void SetCoord(const ID id, const Coord coord);
 	void RemoveCoord(const Coord coord);
 	void GetNumOfNeighbors(const Coord coord, const ID id, std::vector<int>& neighbors, bool selfContained = true);
+	void GetNumOfNeighbors(const Coord coord, const ID id, int* neighbors, bool selfContained = true);
 	bool CheckCoordIsInBound(const Column column, const Row row);
 	bool IsGameEnd(const Coord coord, const ID id);
 

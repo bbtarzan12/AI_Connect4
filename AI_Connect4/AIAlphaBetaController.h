@@ -5,6 +5,7 @@
 #include "Controller.h"
 #include <vector>
 #include "Map.h"
+#include <algorithm>
 
 class AIAlphaBetaController : public Controller
 {
@@ -16,10 +17,17 @@ public:
 	struct Node
 	{
 		Node() {}
+		~Node() 
+		{
+			for (auto & child : childs)
+			{
+				delete child;
+			}
+			childs.clear();
+		}
 		Node(Map map) : map(map) { }
 		ID id;
 		Map map;
-		Node* parent = nullptr;
 		Coord coord;
 		Score score = 0;
 		Column column = 0;
@@ -33,7 +41,6 @@ public:
 		Column GetMaxScoreColumn();
 	private:
 		Score AlphaBetaPruning(Node* node, int depth, Score alpha, Score beta, bool isMaximizingPlayer);
-		Score NegaMax(Node* node, int depth, Score alpha, Score beta);
 
 	private:
 		Node root;

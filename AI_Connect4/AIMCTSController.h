@@ -20,6 +20,14 @@ private:
 	struct Node
 	{
 		Node(ID id, Node* parent) : id(id), parent(parent) {}
+		~Node()
+		{
+			for (auto & child : childs)
+			{
+				delete child;
+			}
+			childs.clear();
+		}
 		ID id;
 		int wins = 0;
 		int simulations = 0;

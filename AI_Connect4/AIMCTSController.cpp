@@ -37,7 +37,7 @@ Column AIMCTSController::GetPlayerInput()
 		// Simulation
 		int totalSimulation = 0;
 		int totalWin = 0;
-		Simulation(expandedNode, 1500, totalSimulation, totalWin);
+		Simulation(expandedNode, 10000, totalSimulation, totalWin);
 
 		// Backpropagation
 		Backpropagation(expandedNode, expandedNode->id, totalSimulation, totalWin);

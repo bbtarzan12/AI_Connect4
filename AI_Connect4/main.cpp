@@ -5,7 +5,7 @@
 #include <iostream>
 #include "AIMCTSController.h"
 #include "AIPureMCTSController.h"
-
+#include "AIPureMCTSCudaController.h"
 
 int main()
 {
@@ -14,8 +14,8 @@ int main()
 
 	game->Initialize();
 
-	game->AddPlayer<AIAlphaBetaController>("Alpha Beta");
-	game->AddPlayer<AIPureMCTSController>("Pure MCTS");
+	game->AddPlayer<AIPureMCTSCudaController>("CUDA MCTS");
+	game->AddPlayer<AIAlphaBetaController>("Alpha Beta 11");
 
 	while (!game->isGameFinished())
 	{

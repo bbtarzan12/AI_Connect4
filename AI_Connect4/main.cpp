@@ -4,6 +4,7 @@
 #include "AIAlphaBetaController.h"
 #include <iostream>
 #include "AIMCTSController.h"
+#include "AIPureMCTSController.h"
 
 
 int main()
@@ -13,8 +14,8 @@ int main()
 
 	game->Initialize();
 
-	game->AddPlayer<KeyboardController>("Player");
-	game->AddPlayer<AIAlphaBetaController>("Alpha Beta Depth 11");
+	game->AddPlayer<AIAlphaBetaController>("Alpha Beta");
+	game->AddPlayer<AIPureMCTSController>("Pure MCTS");
 
 	while (!game->isGameFinished())
 	{

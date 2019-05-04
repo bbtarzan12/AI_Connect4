@@ -75,6 +75,9 @@
     <ClCompile Include="AIMCTSController.cpp">
       <Filter>소스 파일\Controller</Filter>
     </ClCompile>
+    <ClCompile Include="AIPureMCTSController.cpp">
+      <Filter>소스 파일\Controller</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CommandLineRenderer.h">
@@ -114,6 +117,9 @@
       <Filter>헤더 파일\Controller</Filter>
     </ClInclude>
     <ClInclude Include="AIMCTSController.h">
+      <Filter>헤더 파일\Controller</Filter>
+    </ClInclude>
+    <ClInclude Include="AIPureMCTSController.h">
       <Filter>헤더 파일\Controller</Filter>
     </ClInclude>
   </ItemGroup>

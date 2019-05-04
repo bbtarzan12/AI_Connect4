@@ -130,6 +130,7 @@
   <ItemGroup>
     <ClCompile Include="AIAlphaBetaController.cpp" />
     <ClCompile Include="AIMCTSController.cpp" />
+    <ClCompile Include="AIPureMCTSController.cpp" />
     <ClCompile Include="CommandLineRenderer.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="Heuristic.cpp" />
@@ -144,6 +145,7 @@
   <ItemGroup>
     <ClInclude Include="AIAlphaBetaController.h" />
     <ClInclude Include="AIMCTSController.h" />
+    <ClInclude Include="AIPureMCTSController.h" />
     <ClInclude Include="CommandLineRenderer.h" />
     <ClInclude Include="Heuristic.h" />
     <ClInclude Include="KeyboardController.h" />

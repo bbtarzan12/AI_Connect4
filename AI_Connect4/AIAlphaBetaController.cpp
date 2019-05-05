@@ -57,6 +57,11 @@ Score AIAlphaBetaController::Tree::AlphaBetaPruning(Node* node, int depth, Score
 		return Heuristic::Dumb(node->map, node->coord, node->id) * (node->id == id ? 1 : -1);
 	}
 
+	if (depth != 1 && node->map->IsMapFull())
+	{
+		return 0;
+	}
+
 	int numOfEmptyTop = node->map->GetNumOfEmptyTop();
 	node->childs.reserve(numOfEmptyTop);
 	for (Column column = 0; column < MAX_COLUMN; column++)

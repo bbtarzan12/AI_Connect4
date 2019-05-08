@@ -17,7 +17,7 @@ int main()
 	game->AddPlayer<AIPureMCTSCudaController>("CUDA MCTS");
 	game->AddPlayer<AIAlphaBetaController>("Alpha Beta 11");
 
-	while (!game->isGameFinished())
+	while (!game->IsGameFinished())
 	{
 		game->Update();
 		renderer->Render(game);

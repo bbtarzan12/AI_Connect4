@@ -29,7 +29,8 @@ public:
 
 	Map& GetGameMap();
 
-	bool isGameFinished();
+	bool IsGameFinished();
+	bool IsFirstTrun();
 
 private:
 	Game() = default;
@@ -40,6 +41,7 @@ private:
 	std::vector<std::shared_ptr<Player>> players;
 	ID currentTurnPlayerID;
 	int numPlayer;
+	int turn;
 	bool isGameEnd;
 
 };

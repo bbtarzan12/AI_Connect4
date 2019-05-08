@@ -12,6 +12,7 @@ std::shared_ptr<Game> Game::Create()
 
 void Game::Initialize()
 {
+	turn = 1;
 	numPlayer = 0;
 	isGameEnd = false;
 }
@@ -19,7 +20,7 @@ void Game::Initialize()
 void Game::Update()
 {
 	const shared_ptr<Player>& player = players[currentTurnPlayerID];
-	cout << *player << " Turn" << endl;
+	cout << *player << " Turn(" << turn << ")" << endl;
 
 	bool isValidCoord = false;
 	Coord coord;
@@ -55,6 +56,7 @@ void Game::Update()
 	{
 		currentTurnPlayerID = 0;
 	}
+	turn++;
 }
 
 void Game::Release()
@@ -70,7 +72,12 @@ Map& Game::GetGameMap()
 	return map;
 }
 
-bool Game::isGameFinished()
+bool Game::IsGameFinished()
 {
 	return isGameEnd;
+}
+
+bool Game::IsFirstTrun()
+{
+	return turn == 1;
 }

@@ -21,6 +21,8 @@ void Player::SetController(std::shared_ptr<Controller>& controller)
 
 Column Player::GetPlayerInput()
 {
+	if (game->IsFirstTrun())
+		return Column(2);
 	return controller->GetPlayerInput();
 }
 

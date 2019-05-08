@@ -14,10 +14,10 @@ int main()
 
 	game->Initialize();
 
-	game->AddPlayer<AIAlphaBetaController>("Alpha Beta");
-	game->AddPlayer<AIPureMCTSController>("Pure MCTS");
+	game->AddPlayer<AIAlphaBetaController>("Alpha Beta 11");
+	game->AddPlayer<KeyboardController>("Player");
 
-	while (!game->isGameFinished())
+	while (!game->IsGameFinished())
 	{
 		game->Update();
 		renderer->Render(game);

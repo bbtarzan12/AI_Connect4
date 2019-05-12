@@ -81,6 +81,6 @@ int main()
 	}
 
 	game->Release();
-
+	system("pause");
 	return 0;
 }

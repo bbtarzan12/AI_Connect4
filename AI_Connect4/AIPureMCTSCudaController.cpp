@@ -62,6 +62,7 @@ Column AIPureMCTSCudaController::GetPlayerInput()
 	auto stop = high_resolution_clock::now();
 	auto duration = duration_cast<milliseconds>(stop - start);
 	cout << duration.count() / 1000.0f << "초 걸렸습니다 (초당 " << (int)(numSimulations / (duration.count() / 1000.0f)) << " 시뮬레이션)" << endl;
+	cout << "시뮬레이션들 중 가장 높은 승률을 가진 자식을 선택한다." << endl;
 
 	return maxColumn;
 }

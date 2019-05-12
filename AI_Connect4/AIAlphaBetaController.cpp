@@ -41,7 +41,12 @@ Column AIAlphaBetaController::Tree::GetMaxScoreColumn()
 	root = Node();
 	root.map = &map;
 	root.id = id ^ 1;
-	AlphaBetaPruning(&root, 1, MINUS_INFINITE, PLUS_INFINITE, true);
+	Score score = AlphaBetaPruning(&root, 1, MINUS_INFINITE, PLUS_INFINITE, true);
+
+	cout << "Alpha Beta Pruning을 Depth " << maxDepth << " 까지 진행한 결과" << endl;
+	cout << "맨 처음 루트의 자식들(" << root.childs.size() << "개) 중 가장 점수가 높은 자식을 선택했다." << endl;
+	cout << "휴리스틱 점수 : " << score << endl;
+
 	return bestNode->coord.first;
 }
 

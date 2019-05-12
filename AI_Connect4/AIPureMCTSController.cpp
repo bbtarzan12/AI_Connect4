@@ -50,6 +50,7 @@ Column AIPureMCTSController::GetPlayerInput()
 
 		cout << "numSimulation : " << numSimulation << " totalWin : " << totalWin << " Winning Rate : " << winningRate << endl;
 	}
+	cout << "시뮬레이션들 중 가장 높은 승률을 가진 자식을 선택한다." << endl;
 
 	return maxColumn;
 }

@@ -52,7 +52,7 @@ Column AIMCTSController::GetPlayerInput()
 	{
 		cout << "Child Simulation : " << child->simulations << " Win : " << child->wins << " UCT : " << child->UCT() << endl;
 	}
-	//Column maxColumn = distance(root.childs.begin(), max_element(root.childs.begin(), root.childs.end(), [](const Node* l, const Node* r) { return l->UCT() < r->UCT(); }));
+	cout << "시뮬레이션들 중 가장 높은 UCT점수를 가진 자식을 선택한다." << endl;
 
 	return (*max_element(root.childs.begin(), root.childs.end(), [](const Node* l, const Node* r) { return l->UCT() < r->UCT(); }))->column;
 }

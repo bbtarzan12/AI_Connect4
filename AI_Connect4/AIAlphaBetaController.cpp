@@ -21,7 +21,7 @@ Column AIAlphaBetaController::GetPlayerInput()
 	Map& map = player->GetGameMap();
 	const ID id = player->GetPlayerID();
 	Map copiedMap = map;
-	Tree tree(copiedMap, id, 11);
+	Tree tree(copiedMap, id, 10);
 	Column result = tree.GetMaxScoreColumn();
 
 	auto stop = high_resolution_clock::now();

@@ -16,12 +16,15 @@ AIPureMCTSController::AIPureMCTSController(const std::shared_ptr<Player>& player
 
 Column AIPureMCTSController::GetPlayerInput()
 {
+	auto start = high_resolution_clock::now();
+
 	const ID id = player->GetPlayerID();
 	Map& map = player->GetGameMap();
 	const int maxSimulation = 10000000;
 
 	Column maxColumn = 0;
 	float maxWinningRate = -1;
+	int numSimulations = 0;
 	for (Column column = 0; column < MAX_COLUMN; column++)
 	{
 		bool isvalid = false;
@@ -40,6 +43,7 @@ Column AIPureMCTSController::GetPlayerInput()
 
 		Simulation(childMap, maxSimulation, numSimulation, totalWin);
 
+		numSimulations += numSimulation;
 		float winningRate = (float)totalWin / numSimulation;
 
 		if (winningRate > maxWinningRate)
@@ -50,8 +54,10 @@ Column AIPureMCTSController::GetPlayerInput()
 
 		cout << "numSimulation : " << numSimulation << " totalWin : " << totalWin << " Winning Rate : " << winningRate << endl;
 	}
+	auto stop = high_resolution_clock::now();
+	auto duration = duration_cast<milliseconds>(stop - start);
+	cout << duration.count() / 1000.0f << "초 걸렸습니다 (초당 " << (int)(numSimulations / (duration.count() / 1000.0f)) << " 시뮬레이션)" << endl;
 	cout << "시뮬레이션들 중 가장 높은 승률을 가진 자식을 선택한다." << endl;
-
 	return maxColumn;
 }
 

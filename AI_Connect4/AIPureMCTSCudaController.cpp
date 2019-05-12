@@ -23,8 +23,6 @@ AIPureMCTSCudaController::AIPureMCTSCudaController(const std::shared_ptr<Player>
 	printf("GPU Device 이름 : %s\n", deviceProp.name);
 	printf("Cuda Compatibility 버전 : %d.%d\n", deviceProp.major, deviceProp.minor);
 	printf("본 프로젝트는 Cuda 10.1, GTX 1060 3GB, 6.1의 Compatibility 버전을 기준으로 작성되었습니다.\n");
-
-
 }
 
 Column AIPureMCTSCudaController::GetPlayerInput()

@@ -25,7 +25,7 @@ void SetPlayer(const shared_ptr<Game>& game)
 	}
 
 	int ai;
-	cout << "1. AlphaBeta (Depth 11 고정)" << endl;
+	cout << "1. AlphaBeta (Depth 10 고정)" << endl;
 	cout << "2. MCTS UCT" << endl;
 	cout << "3. MCTS Pure" << endl;
 	cout << "4. MCTS Pure GPU (GPU버전 Pure MCTS)    * Cuda Driver 10.1이 설치되어 있지 않으면 사용 불가합니다" << endl;

@@ -9,19 +9,6 @@
 
 using namespace std;
 
-#define gpuErrorCheck(ans) { gpuAssert((ans), __FILE__, __LINE__); }
-#define PSEUDO_FLOOR( V ) ((V) >= 0 ? (int)(V) : (int)((V) - 1))
-
-inline void gpuAssert(cudaError_t code, const char *file, int line, bool abort = true)
-{
-	if (code != cudaSuccess)
-	{
-		fprintf(stderr, "GPUassert: %s %s %d\n", cudaGetErrorString(code), file, line);
-		if (abort) exit(code);
-	}
-}
-
-
 __device__ uint32_t xor128()
 {
 	static uint32_t seed = 1;

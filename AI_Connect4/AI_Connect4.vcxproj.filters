@@ -133,8 +133,6 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <CudaCompile Include="PureMCTSKernel.cu">
-      <Filter>소스 파일\Controller</Filter>
-    </CudaCompile>
+    <CudaCompile Include="PureMCTSKernel.cu" />
   </ItemGroup>
 </Project>

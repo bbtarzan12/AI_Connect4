@@ -16,6 +16,11 @@ using namespace std::chrono;
 AIPureMCTSCudaController::AIPureMCTSCudaController(const std::shared_ptr<Player>& player)
 {
 	this->player = player;
+
+	cudaDeviceProp deviceProp;
+	cudaGetDeviceProperties(&deviceProp, 0);
+	std::printf("Cuda Compatibility 버전 : %d.%d\n", deviceProp.major, deviceProp.minor);
+	std::printf("본 프로젝트는 Cuda 10.1, GTX 1060 3GB, 6.1의 Compatibility 버전을 기준으로 작성되었습니다.\n");
 }
 
 Column AIPureMCTSCudaController::GetPlayerInput()

@@ -78,6 +78,9 @@
     <ClCompile Include="AIPureMCTSController.cpp">
       <Filter>소스 파일\Controller</Filter>
     </ClCompile>
+    <ClCompile Include="AIPureMCTSCudaController.cpp">
+      <Filter>소스 파일\Controller</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CommandLineRenderer.h">
@@ -122,5 +125,16 @@
     <ClInclude Include="AIPureMCTSController.h">
       <Filter>헤더 파일\Controller</Filter>
     </ClInclude>
+    <ClInclude Include="PureMCTSKernel.cuh">
+      <Filter>헤더 파일\Controller</Filter>
+    </ClInclude>
+    <ClInclude Include="AIPureMCTSCudaController.h">
+      <Filter>헤더 파일\Controller</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <CudaCompile Include="PureMCTSKernel.cu">
+      <Filter>소스 파일\Controller</Filter>
+    </CudaCompile>
   </ItemGroup>
 </Project>

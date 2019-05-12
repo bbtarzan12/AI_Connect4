@@ -4,10 +4,11 @@
 #include "AIAlphaBetaController.h"
 #include "AIMCTSController.h"
 #include "AIPureMCTSController.h"
+#include "AIRandomController.h"
+#include "AIPureMCTSCudaController.h"
 
 #include <iostream>
 #include <string>
-#include "AIRandomController.h"
 
 using namespace std;
 
@@ -27,8 +28,9 @@ void SetPlayer(const shared_ptr<Game>& game)
 	cout << "1. AlphaBeta" << endl;
 	cout << "2. MCTS UCT" << endl;
 	cout << "3. MCTS Pure" << endl;
-	cout << "4. Random" << endl;
-	cout << "5. Keyboard" << endl;
+	cout << "4. MCTS Pure GPU" << endl;
+	cout << "5. Random" << endl;
+	cout << "6. Keyboard" << endl;
 	cout << "Select controller : ";
 
 	while (!(cin >> ai) || ai <= 0 || ai > 5)
@@ -50,9 +52,12 @@ void SetPlayer(const shared_ptr<Game>& game)
 			game->AddPlayer<AIPureMCTSController>(name);
 			break;
 		case 4:
-			game->AddPlayer<AIRandomController>(name);
+			game->AddPlayer<AIPureMCTSCudaController>(name);
 			break;
 		case 5:
+			game->AddPlayer<AIRandomController>(name);
+			break;
+		case 6:
 			game->AddPlayer<KeyboardController>(name);
 			break;
 	}

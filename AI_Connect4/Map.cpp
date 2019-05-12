@@ -93,20 +93,18 @@ void Map::GetNumOfNeighbors(const Coord coord, const ID id, int* neighbors, bool
 	const Column& column = coord.first;
 	const Row& row = coord.second;
 
+
 	int index = 0;
 	for (int neighborColumn = column - 1; neighborColumn <= column + 1; neighborColumn++)
 	{
-		for (int neighborRow = row - 1; neighborRow <= row; neighborRow++)
+		for (int neighborRow = row - 1; neighborRow <= row + 1; neighborRow++)
 		{
-			if (neighborColumn == column && neighborRow == row)
-				continue;
-			
-			if (neighborColumn == column + 1 && neighborRow == row)
+			if (neighborColumn == column && neighborRow >= row)
 				continue;
 
 			int deltaColumn = neighborColumn - column;
 			int deltaRow = neighborRow - row;
-			int numOfNeighbor = GetNumOfNeighbor(coord, deltaColumn, deltaRow, id) + GetNumOfNeighbor(coord, -deltaColumn, -deltaRow, id) + (selfContained ? 1 : 0);
+			int numOfNeighbor = GetNumOfNeighbor(coord, deltaColumn, deltaRow, id) + (selfContained ? 1 : 0);
 			neighbors[index++] = numOfNeighbor;
 		}
 	}

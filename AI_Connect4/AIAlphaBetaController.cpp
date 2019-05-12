@@ -59,7 +59,7 @@ Score AIAlphaBetaController::Tree::AlphaBetaPruning(Node* node, int depth, Score
 
 	if (depth > maxDepth)
 	{
-		return Heuristic::Dumb(node->map, node->coord, node->id) * (node->id == id ? 1 : -1);
+		return Heuristic::Median(node->map, node->coord, node->id)/* * (node->id == id ? 1 : -1)*/;
 	}
 
 	if (depth != 1 && node->map->IsMapFull())

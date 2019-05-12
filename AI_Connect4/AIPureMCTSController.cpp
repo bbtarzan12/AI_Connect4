@@ -18,7 +18,7 @@ Column AIPureMCTSController::GetPlayerInput()
 {
 	const ID id = player->GetPlayerID();
 	Map& map = player->GetGameMap();
-	const int maxSimulation = 1000000;
+	const int maxSimulation = 10000000;
 
 	Column maxColumn = 0;
 	float maxWinningRate = -1;
